@@ -4,15 +4,15 @@
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="{{route("home")}}">Home</a></li>
 
-							<li><a href="blog.html" class="active">Blog</a></li>
+							<li><a href="{{route("blog")}}" class="active">Blog</a></li>
 
-							<li><a href="about.html">About</a></li>
+							<li><a href="{{route("about")}}">About</a></li>
 
-							<li><a href="team.html">Authors</a></li>
+							<li><a href="{{route("team")}}">Authors</a></li>
 
-							<li><a href="contact.html">Contact Us</a></li>
+							<li><a href="{{route("contact")}}">Contact Us</a></li>
 						</ul>
 					</nav>
 
