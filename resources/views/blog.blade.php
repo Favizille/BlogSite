@@ -19,7 +19,17 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>Blog</h1>
+							<div class="row" style="display:flex;">
+                                <div class="col-3">
+                                    <h1>Blog</h1>
+                                </div>
+                                <div class="col-6"></div>
+                                <div class="col-3">
+                                    <a href="{{route('post')}}">
+                                        <span class="fa fa-pencil"> Write</span>
+                                    </a>
+                                </div>
+                            </div>
 
 							<div class="image main">
 								<img src="images/banner-image-3-1920x500.jpg" class="img-fluid" alt="" />
@@ -78,7 +88,6 @@
 											</div>
 										</div>
 									</div>
-
 									<div class="col-3">
 										<div class="form-group">
 				                            <h4>Blog Search</h4>

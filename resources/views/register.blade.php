@@ -20,6 +20,12 @@
                     <div class="card-body p-3">
                     <h2 class="text-uppercase text-center mb-3">Register</h2>
 
+                    @isset($message)
+
+                    <h3> Error: {{$message}}</h3>
+
+                    @endisset
+
                     <form action="{{route("registration")}}" method="POST">
                         @csrf
                         <div class="form-outline mb-4">

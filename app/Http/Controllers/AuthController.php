@@ -24,24 +24,39 @@ class AuthController extends Controller
         return view("login");
     }
 
-    public function registration(RegisterRequest $request){
-        // dd($request);
-        $registrationResponse = $this->authRepository->registration($request);
+    private function responseIsFalse($response){
+        if($response['status'] = false){
+            return true;
+        }
+        return false;
 
-        if(array_key_exists('status_code', $registrationResponse)) {
+    }
+
+    public function registration(RegisterRequest $request){
+
+        $registrationResponse = $this->authRepository->registration($request->validated());
+
+        if($this->responseIsFalse($registrationResponse)) {
             return view('register', ["message" => $registrationResponse['message']]);
         }
 
         return redirect("blog");
     }
 
-    public function access(LoginRequest $request){
-        $accessResponse = $this->authRepository->access($request);
+    public function loginUser(LoginRequest $request){
+        // dd($request);
+        $loginResponse = $this->authRepository->login($request);
 
-        if(array_key_exists('status_code', $accessResponse)) {
-            return view('login', ["message" => $accessResponse['message']]);
+        if($this->responseIsFalse($loginResponse)) {
+            return view('login', ["message" => $loginResponse['message']]);
         }
 
-        return redirect("home");
+        return redirect("blog");
+    }
+
+    public function logout(Request $request){
+        $this->authRepository->logout($request);
+
+        return redirect("/");
     }
 }

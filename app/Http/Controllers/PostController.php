@@ -16,10 +16,22 @@ class PostController extends Controller
         $this->postRepository = $postRepository;
     }
 
-    public function create(PostRequest $request){
-        $postResponse = $this->postRepository->create($request);
+    public function post(){
+        return view('write');
+    }
 
-        if(array_key_exists('status_code', $postResponse)){
+    private function responseIsFalse($response){
+        if($response['status'] = false){
+            return true;
+        }
+        return false;
+
+    }
+
+    public function create(PostRequest $request){
+        $postResponse = $this->postRepository->create($request->validated());
+
+        if($this->responseIsFalse($postResponse)){
             return view('home', ["message" => $postResponse['message']]);
         }
 
@@ -29,7 +41,7 @@ class PostController extends Controller
     public function update(PostRequest $request, $id){
         $postResponse = $this->postRepository->update($request, $id);
 
-        if(array_key_exists('status_code', $postResponse)){
+        if($this->responseIsFalse($postResponse)){
             return view('home', ["message" => $postResponse['message']]);
         }
 
@@ -38,21 +50,16 @@ class PostController extends Controller
 
     public function getAllPost(){
        return $this->postRepository->getAllPost();
-
-        // if(array_key_exists('status_code', $postResponse)){
-        //     return view('home', ["message" => $postResponse['message']]);
-        // }
-
-        // return redirect("blogPost");
     }
 
-    public function getPostById($id){
-        $this->postRepository->getPostById($id);
 
-        if(array_key_exists('status_code', $postResponse)){
-            return view('home', ["message" => $postResponse['message']]);
-        }
+    // public function getPostById($id){
+    //     $this->postRepository->getPostById($id);
 
-        return redirect("blogPost");
-    }
+    //     if(array_key_exists('status_code', $postResponse)){
+    //         return view('home', ["message" => $postResponse['message']]);
+    //     }
+
+    //     return redirect("blogPost");
+    // }
 }

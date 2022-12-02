@@ -2,6 +2,8 @@
     @section('content')
 				<!-- Menu -->
 					<nav id="menu">
+                        @isset($userId)
+
 						<h2>Menu</h2>
 						<ul>
 							<li><a href="{{route("home")}}" class="active">Home</a></li>
@@ -14,6 +16,13 @@
 
 							<li><a href="{{route("contact")}}">Contact Us</a></li>
 						</ul>
+                        @endisset
+
+                        <li> <a href="{{route("login_view")}}" style="color: whitesmoke">Login</a></li>
+
+                        <li><a href="{{route("register_view")}}" style="color: whitesmoke">Register</a></li>
+
+
 					</nav>
 
 				<!-- Main -->
@@ -116,7 +125,7 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
-							<section>
+							{{-- <section>
 								<h2>Contact Us</h2>
 								<form method="post" action="#">
 									<div class="fields">
@@ -145,7 +154,7 @@
 										</div>
 									</div>
 								</form>
-							</section>
+							</section> --}}
 							<section>
 								<h2>Contact Info</h2>
 

@@ -21,9 +21,10 @@ use App\Http\Controllers\PostController;
 // });
 
 Route::get('/', [AuthController::class, 'login'])->name("login_view");
-Route::post('/login', [AuthController::class, 'access'])->name("login");
+Route::post('/login', [AuthController::class, 'loginUser'])->name("login");
 Route::get('/register', [AuthController::class, 'register'])->name("register_view");
 Route::post('/registration', [AuthController::class, 'registration'])->name("registration");
+Route::get('/logout', [AuthController::class, 'logout'])->name("logout");
 
 
 Route::get('/home', [HomeController::class, 'home'])->name("home");
@@ -33,11 +34,11 @@ Route::get('/blogPost', [HomeController::class, 'blogPost'])->name("blogPost");
 Route::get('/team', [HomeController::class, 'team'])->name("team");
 Route::get('/contact', [HomeController::class, 'contact'])->name("contact");
 
+Route::get('/post', [PostController::class, 'post'])->name('post');
 Route::post('/post', [PostController::class, "create"])->name("create_post");
 Route::post('/update_post', [PostController::class, "update"])->name("update_post");
 
 
 //TO DO
-// 1. Solve bug of registering a user and loginin in a user
 // 2. create post in db
 // 3. complete post controller logic of CRUD

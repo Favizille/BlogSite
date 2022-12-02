@@ -14,17 +14,17 @@ class PostRepository extends BaseRepository
         $this->model = $model;
     }
 
-    public function create($request){
-        $validated = $request->validated();
+    public function create($data){
 
-        $post = $this->user->create($validated);
-
-        if(!$post){
-            return $this->failResponse("Post not created");
+        if(!$post = $this->user->create($data)){
+            return [
+                "status" => false,
+                "message" => "Post Creation Failed"
+            ];
         }
 
         return [
-            "status" => $this->successResponse('Post was successful'),
+            "status" => true,
             "data" => $post,
         ];
     }
@@ -35,21 +35,24 @@ class PostRepository extends BaseRepository
         $post->update($request->all());
 
         if(!$post){
-            return $this->failResponse("Post failed to update");
+            return [
+                "status" => false,
+                "message" => "Post failed to update",
+            ];
         }
 
-        return $this->successResponse([
-            "user" => $post,
-            "message"=>"Post has been successfully updated"
-        ]);
+        return [
+            "status" => true,
+            "post" => $post,
+        ];
     }
 
     public function getAllPost(){
-        dd($this->model->get());
-        return $this->model->get();
+        // dd($this->model->get());
+        return $this->model->all();
     }
 
     public function getPostById(){
-        
+
     }
 }

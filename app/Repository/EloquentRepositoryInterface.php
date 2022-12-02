@@ -15,9 +15,4 @@ interface EloquentRepositoryInterface
 
     // public function deletePost($postId);
     public function slugIt($text);
-
-    public function successResponse($data = null, $message = null);
-
-    public function failResponse($message, $code = 500);
-
 }

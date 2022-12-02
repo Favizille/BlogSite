@@ -15,40 +15,47 @@ class AuthRepository extends BaseRepository
         $this->user = $user;
     }
 
-    public function registration($request){
-        $validated = $request->validated();
-            $validated['password'] = bcrypt($validated['password']);
+    public function registration($data){
 
-            $user = $this->user->create($validated);
-            // dd($user);
+            $data['password'] = bcrypt($data['password']);
 
-            if(!$user){
-                return $this->failResponse("User not registered");
+            if(!$user = $this->user->create($data)){
+                return [
+                    "status" => false,
+                    "message" => "Registration Failed"
+                ];
             }
 
         return [
-            "status" => $this->successResponse('Registration was successful'),
-            "data" => $user,
+            "status" => true,
+            "user" => $user,
         ];
     }
 
-    public function access($request){
+    public function login($data){
+
+        // dd($data->email);
 
         if(!auth()->attempt([
-            'email' => $request->email,
-            'password' => $request->password
+            'email' => $data->email,
+            'password' => $data->password
             ])) {
 
-            return $this->failResponse("Invalid login details");
+            return [
+                "status" => false,
+                "message" => "Invalid credientials"
+            ];
         }
 
-        $user = $this->user->where("email", $request->email)->first();
+        auth()->login($this->user->where("email", $data->email)->first());
 
-        auth()->login($user);
+        return [
+            "status" => true,
+            "user" => auth()->user(),
+        ];
+    }
 
-        return $this->successResponse([
-                "user" => $user,
-                "message"=>"Login successful"
-        ]);
+    public function logout($data){
+        return auth()->logout($data);
     }
 }
