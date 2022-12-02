@@ -25,7 +25,7 @@ class AuthController extends Controller
     }
 
     private function responseIsFalse($response){
-        if($response['status'] = false){
+        if($response['status'] == false){
             return true;
         }
         return false;

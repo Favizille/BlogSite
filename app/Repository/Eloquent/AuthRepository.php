@@ -9,6 +9,8 @@ class AuthRepository extends BaseRepository
 {
     protected $model;
     protected $user;
+    private const TRUE = true;
+    private const FALSE = false;
 
     public function __construct(User $user)
     {
@@ -21,13 +23,13 @@ class AuthRepository extends BaseRepository
 
             if(!$user = $this->user->create($data)){
                 return [
-                    "status" => false,
+                    "status" => self::FALSE,
                     "message" => "Registration Failed"
                 ];
             }
 
         return [
-            "status" => true,
+            "status" => self::TRUE,
             "user" => $user,
         ];
     }
@@ -42,7 +44,7 @@ class AuthRepository extends BaseRepository
             ])) {
 
             return [
-                "status" => false,
+                "status" => self::FALSE,
                 "message" => "Invalid credientials"
             ];
         }
@@ -50,7 +52,7 @@ class AuthRepository extends BaseRepository
         auth()->login($this->user->where("email", $data->email)->first());
 
         return [
-            "status" => true,
+            "status" => self::TRUE,
             "user" => auth()->user(),
         ];
     }

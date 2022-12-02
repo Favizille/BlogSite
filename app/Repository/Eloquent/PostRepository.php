@@ -8,6 +8,8 @@ use App\Repository\BaseRepository;
 class PostRepository extends BaseRepository
 {
     protected $model;
+    private const TRUE = true;
+    private const FALSE = false;
 
     public function __construct(Post $model)
     {
@@ -18,13 +20,13 @@ class PostRepository extends BaseRepository
 
         if(!$post = $this->user->create($data)){
             return [
-                "status" => false,
+                "status" => self::FALSE,
                 "message" => "Post Creation Failed"
             ];
         }
 
         return [
-            "status" => true,
+            "status" => self::TRUE,
             "data" => $post,
         ];
     }
