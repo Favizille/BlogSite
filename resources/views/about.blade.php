@@ -4,16 +4,16 @@
 				<nav id="menu">
 					<h2>Menu</h2>
 					<ul>
-						<li><a href="index.html">Home</a></li>
+                        <li><a href="{{route("home")}}">Home</a></li>
 
-						<li><a href="blog.html">Blog</a></li>
+                        <li><a href="{{route("blog")}}">Blog</a></li>
 
-						<li><a href="about.html" class="active">About</a></li>
+                        <li><a href="{{route("about")}}"  class="active">About</a></li>
 
-						<li><a href="team.html">Authors</a></li>
+                        <li><a href="{{route("team")}}">Authors</a></li>
 
-						<li><a href="contact.html">Contact Us</a></li>
-					</ul>
+                        <li><a href="{{route("contact")}}">Contact Us</a></li>
+                    </ul>
 				</nav>
 
 				<!-- Main -->
