@@ -4,22 +4,32 @@
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="{{route("home")}}">Home</a></li>
 
-							<li><a href="blog.html" class="active">Blog</a></li>
+							<li><a href="{{route("blog")}}" class="active">Blog</a></li>
 
-							<li><a href="about.html">About</a></li>
+							<li><a href="{{route("about")}}">About</a></li>
 
-							<li><a href="team.html">Authors</a></li>
+							<li><a href="{{route("team")}}">Authors</a></li>
 
-							<li><a href="contact.html">Contact Us</a></li>
+							<li><a href="{{route("contact")}}">Contact Us</a></li>
 						</ul>
 					</nav>
 
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>Blog</h1>
+							<div class="row" style="display:flex;">
+                                <div class="col-3">
+                                    <h1>Blog</h1>
+                                </div>
+                                <div class="col-6"></div>
+                                <div class="col-3">
+                                    <a href="{{route('post')}}">
+                                        <span class="fa fa-pencil"> Write</span>
+                                    </a>
+                                </div>
+                            </div>
 
 							<div class="image main">
 								<img src="images/banner-image-3-1920x500.jpg" class="img-fluid" alt="" />
@@ -78,7 +88,6 @@
 											</div>
 										</div>
 									</div>
-
 									<div class="col-3">
 										<div class="form-group">
 				                            <h4>Blog Search</h4>
