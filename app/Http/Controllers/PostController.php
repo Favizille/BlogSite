@@ -29,13 +29,16 @@ class PostController extends Controller
     }
 
     public function create(PostRequest $request){
+
         $postResponse = $this->postRepository->create($request->validated());
 
         if($this->responseIsFalse($postResponse)){
             return view('home', ["message" => $postResponse['message']]);
         }
 
-        return redirect("blogPost");
+        // dd($postResponse);
+
+        return view("blogpost", ["post" => $postResponse["data"]]);
     }
 
     public function update(PostRequest $request, $id){
@@ -49,7 +52,7 @@ class PostController extends Controller
     }
 
     public function getAllPost(){
-       return $this->postRepository->getAllPost();
+       return view ("blog",$this->postRepository->getAllPost());
     }
 
 

@@ -3,6 +3,7 @@
 namespace App\Repository\Eloquent;
 
 use App\Models\Post;
+use Illuminate\Support\Str;
 use App\Repository\BaseRepository;
 
 class PostRepository extends BaseRepository
@@ -16,9 +17,20 @@ class PostRepository extends BaseRepository
         $this->model = $model;
     }
 
-    public function create($data){
+    public function create($request){
 
-        if(!$post = $this->user->create($data)){
+        $image = $request['file_path'];
+        $imageName = Str::slug($request["title"]) . '.' . time() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('public/uploads', $imageName);
+
+        $post = $this->model->create([
+            "title" => $request["title"],
+            "description" => $request["description"],
+            "file_path" => $imageName,
+            "user_id" => $request["user_id"],
+        ]);
+
+        if(!$post){
             return [
                 "status" => self::FALSE,
                 "message" => "Post Creation Failed"
@@ -50,7 +62,7 @@ class PostRepository extends BaseRepository
     }
 
     public function getAllPost(){
-        // dd($this->model->get());
+
         return $this->model->all();
     }
 

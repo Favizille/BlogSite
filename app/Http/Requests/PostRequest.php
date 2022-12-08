@@ -25,7 +25,9 @@ class PostRequest extends FormRequest
     {
         return [
             "title" => "required",
-            "description" => "required"
+            "description" => "required",
+            "file_path" => "required",
+            "user_id" => "required"
         ];
     }
 }

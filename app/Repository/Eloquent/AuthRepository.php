@@ -36,8 +36,6 @@ class AuthRepository extends BaseRepository
 
     public function login($data){
 
-        // dd($data->email);
-
         if(!auth()->attempt([
             'email' => $data->email,
             'password' => $data->password
