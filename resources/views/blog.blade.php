@@ -4,106 +4,90 @@
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="{{route("home")}}">Home</a></li>
 
-							<li><a href="blog.html" class="active">Blog</a></li>
+							<li><a href="{{route("blog")}}" class="active">Blog</a></li>
 
-							<li><a href="about.html">About</a></li>
+							<li><a href="{{route("about")}}">About</a></li>
 
-							<li><a href="team.html">Authors</a></li>
+							<li><a href="{{route("team")}}">Authors</a></li>
 
-							<li><a href="contact.html">Contact Us</a></li>
+							<li><a href="{{route("contact")}}">Contact Us</a></li>
 						</ul>
 					</nav>
 
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>Blog</h1>
+							<div class="row" style="display:flex;">
+                                <div class="col-3">
+                                    <h1>Blog</h1>
+                                </div>
+                                <div class="col-6"></div>
+                                <div class="col-3">
+                                    <a href="{{route('post')}}">
+                                        <span class="fa fa-pencil"> Write</span>
+                                    </a>
+                                </div>
+                            </div>
 
 							<div class="image main">
 								<img src="images/banner-image-3-1920x500.jpg" class="img-fluid" alt="" />
 							</div>
 
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-9">
-										<div class="row">
-											<div class="col-sm-6 text-center">
-												<img src="images/blog-1-720x480.jpg" class="img-fluid" alt="" />
+                            @isset($posts)
 
-												<h2 class="m-n"><a href="blog-post.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <div class="row">
 
-												<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-											</div>
+                                                @foreach ($posts as $post)
 
-											<div class="col-sm-6 text-center">
-												<img src="images/blog-2-720x480.jpg" class="img-fluid" alt="" />
+                                                    <div class="col-sm-6 text-center" style="height:15%; width:25%">
 
-												<h2 class="m-n"><a href="blog-post.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
+                                                        <img src="{{asset($post->file_path_formatted)}}" class="img-fluid" alt="">
 
-												<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-											</div>
+                                                        <h2 class="m-n"><a href="{{route('blogPost', $post->id)}}">{{$post->title}}</a></h2>
 
-											<div class="col-sm-6 text-center">
-												<img src="images/blog-3-720x480.jpg" class="img-fluid" alt="" />
+                                                        <p> {{$post->user->first_name." ".$post->user->last_name}} &nbsp;|&nbsp; {{$post->updated_at}}</p>
+                                                    </div>
 
-												<h2 class="m-n"><a href="blog-post.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
+                                                @endforeach
 
-												<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-											</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <h4>Blog Search</h4>
+                                            </div>
 
-											<div class="col-sm-6 text-center">
-												<img src="images/blog-4-720x480.jpg" class="img-fluid" alt="" />
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
 
-												<h2 class="m-n"><a href="blog-post.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
+                                                    <span class="input-group-addon"><a href="#"><i class="fa fa-search"></i></a></span>
+                                                </div>
+                                            </div>
 
-												<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-											</div>
+                                            <br>
 
-											<div class="col-sm-6 text-center">
-												<img src="images/blog-5-720x480.jpg" class="img-fluid" alt="" />
+                                            <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></p>
 
-												<h2 class="m-n"><a href="blog-post.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
+                                            <p><a href="#">Non, magni, sequi. Explicabo illum quas debitis ut.</a></p>
 
-												<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-											</div>
+                                            <p><a href="#">Vatae expedita deleniti optio ex adipisci . </a></p>
 
-											<div class="col-sm-6 text-center">
-												<img src="images/blog-6-720x480.jpg" class="img-fluid" alt="" />
+                                            <p><a href="#">Soluta non modi dolorem voluptates dolor laborum.</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-												<h2 class="m-n"><a href="blog-post.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-
-												<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-3">
-										<div class="form-group">
-				                            <h4>Blog Search</h4>
-				                        </div>
-
-										<div class="form-group">
-				                            <div class="input-group">
-				                                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
-
-				                                <span class="input-group-addon"><a href="#"><i class="fa fa-search"></i></a></span>
-				                            </div>
-				                        </div>
-
-				                        <br>
-
-				                        <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></p>
-
-				                        <p><a href="#">Non, magni, sequi. Explicabo illum quas debitis ut.</a></p>
-
-				                        <p><a href="#">Vatae expedita deleniti optio ex adipisci . </a></p>
-
-				                        <p><a href="#">Soluta non modi dolorem voluptates dolor laborum.</a></p>
-									</div>
-								</div>
-							</div>
+                            @endisset
 						</div>
 					</div>
 
