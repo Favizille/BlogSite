@@ -28,6 +28,16 @@ class PostController extends Controller
 
     }
 
+    public function updatePost($postId){
+        $postResponse = $this->postRepository->getPostById($postId);
+
+        if($this->responseIsFalse($postResponse)){
+            return view('blogpost', ["message" => $postResponse['message']]);
+        }
+
+        return view("editBlogPost", ["post" => $postResponse["data"]]);
+    }
+
     public function create(PostRequest $request){
 
         $postResponse = $this->postRepository->create($request->validated());
@@ -36,23 +46,23 @@ class PostController extends Controller
             return view('home', ["message" => $postResponse['message']]);
         }
 
-        // dd($postResponse);
-
         return view("blogpost", ["post" => $postResponse["data"]]);
     }
 
-    public function update(PostRequest $request, $id){
+    public function update(Request $request, $id){
         $postResponse = $this->postRepository->update($request, $id);
 
         if($this->responseIsFalse($postResponse)){
             return view('home', ["message" => $postResponse['message']]);
         }
 
-        return redirect("blogPost");
+        // dd($postResponse);
+        return view("blogpost", ["post" => $postResponse["post"]]);
     }
 
     public function getAllPost(){
-       return view ("blog",$this->postRepository->getAllPost());
+        // dd($this->postRepository->getAllPost());
+       return view ("blog", ["posts" => $this->postRepository->getAllPost()]);
     }
 
 

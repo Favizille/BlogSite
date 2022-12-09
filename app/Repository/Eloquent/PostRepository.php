@@ -43,10 +43,27 @@ class PostRepository extends BaseRepository
         ];
     }
 
+    // public function updateWhyusPageSetting(Request $request,$id){
+    //     $data = [];
+    //     $data['title'] = $request->input('title');
+    //     if($request->hasFile('image')) {
+    //         $image = $request->file('image');
+    //         $image->move(public_path('/frontend/images/'),$imageName = $image->hashName()); //hashName() will generate image name with extension
+    //         $data['image'] = $imageName; // here if user uploads an image, it will add to data array then add to DB.
+    //     }
+
+    //      DB::table('features')
+    //         ->where('id', $id)
+    //         ->update($data); // if a user uploaded an image will add. if not, a previous image will not change
+    //      \Session::flash('flash_message', __('Why us data updated'));
+    //      \Session::flash('flash_type', 'success');
+
+    //          return redirect()->back();
+    // }
+
     public function update($request, $id){
 
         $post = $this->model->find($id);
-        $post->update($request->all());
 
         if(!$post){
             return [
@@ -54,6 +71,19 @@ class PostRepository extends BaseRepository
                 "message" => "Post failed to update",
             ];
         }
+
+        $data = [];
+        $data["title"] = $request->input('title');
+        $data["description"] = $request->input('description');
+
+        if($request->hasFile('file_path')){
+            $image = $request->input('file_path');
+            $imageName = Str::slug($data["title"]) . '.' . time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/uploads', $imageName);
+            $data['file_path'] = $imageName;
+        }
+
+        $post->where('id', $id)->update($data);
 
         return [
             "status" => true,
@@ -66,7 +96,20 @@ class PostRepository extends BaseRepository
         return $this->model->all();
     }
 
-    public function getPostById(){
+    public function getPostById($postId){
+        $post = $this->model->find($postId);
 
+
+        if(!$post){
+            return [
+                "status" => self::FALSE,
+                "message" => "Post update Failed"
+            ];
+        }
+
+        return [
+            "status" => self::TRUE,
+            "data" => $post,
+        ];
     }
 }
