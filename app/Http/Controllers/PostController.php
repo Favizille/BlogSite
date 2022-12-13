@@ -28,14 +28,23 @@ class PostController extends Controller
 
     }
 
-    public function updatePost($postId){
+
+    public  function getPostById($postId){
+
         $postResponse = $this->postRepository->getPostById($postId);
 
         if($this->responseIsFalse($postResponse)){
-            return view('blogpost', ["message" => $postResponse['message']]);
+            return redirect()->back()->with(["message" => $postResponse["message"]]);
         }
 
-        return view("editBlogPost", ["post" => $postResponse["data"]]);
+        return view("blogpost", ["post" => $postResponse["post"]]);
+
+    }
+
+
+    public function getAllPost(){
+
+       return view ("blog", ["posts" => $this->postRepository->getAllPost()]);
     }
 
     public function create(PostRequest $request){
@@ -49,6 +58,19 @@ class PostController extends Controller
         return view("blogpost", ["post" => $postResponse["data"]]);
     }
 
+    public function updatePost( $request, $postId){
+        // $postResponse = $this->postRepository->getPostById($postId);
+        // $this->getPostById($postId);
+
+        $postResponse = $this->postRepository->update( $request, $postId);
+
+        if($this->responseIsFalse($postResponse)){
+            return view('blogpost', ["message" => $postResponse['message']]);
+        }
+
+        return view("editBlogPost", ["post" => $postResponse["data"]]);
+    }
+
     public function update(Request $request, $id){
         $postResponse = $this->postRepository->update($request, $id);
 
@@ -60,19 +82,33 @@ class PostController extends Controller
         return view("blogpost", ["post" => $postResponse["post"]]);
     }
 
-    public function getAllPost(){
-        // dd($this->postRepository->getAllPost());
-       return view ("blog", ["posts" => $this->postRepository->getAllPost()]);
+    public function deletePost( $postId){
+
+        $deleteResponse = $this->postRepository->delete($postId);
+
+        if($this->responseIsFalse($deleteResponse)){
+
+            return redirect()->back()->with(["message" => $deleteResponse['message']]);
+        }
+
+        // session()->flash('alert-success', 'User was successful added!');
+        return redirect("blog");
+
     }
 
+    public function deleteAllPost(){
 
-    // public function getPostById($id){
-    //     $this->postRepository->getPostById($id);
+        $deleteResponse =  $this->postRepository->deleteAll();
 
-    //     if(array_key_exists('status_code', $postResponse)){
-    //         return view('home', ["message" => $postResponse['message']]);
-    //     }
 
-    //     return redirect("blogPost");
-    // }
+        if($this->responseIsFalse($deleteResponse)){
+
+            return redirect()->back()->with(["message" => $deleteResponse['message']]);
+        }
+
+        return redirect("blog");
+
+
+    }
+
 }

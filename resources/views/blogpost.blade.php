@@ -16,6 +16,7 @@
                 </ul>
             </nav>
 
+
         <!-- Main -->
             <div id="main">
                 @if ($post->user->id === auth()->user()->id)
@@ -33,6 +34,11 @@
 
                     <p>{{$post->description}}</p>
                 </div>
+                <form action="{{route("delete_post",$post->id)}}" method="POST">
+                    {{method_field('delete')}}
+                    @csrf
+                    <button type="submit">Delete</button>
+                </form>
             </div>
 
 

@@ -43,24 +43,6 @@ class PostRepository extends BaseRepository
         ];
     }
 
-    // public function updateWhyusPageSetting(Request $request,$id){
-    //     $data = [];
-    //     $data['title'] = $request->input('title');
-    //     if($request->hasFile('image')) {
-    //         $image = $request->file('image');
-    //         $image->move(public_path('/frontend/images/'),$imageName = $image->hashName()); //hashName() will generate image name with extension
-    //         $data['image'] = $imageName; // here if user uploads an image, it will add to data array then add to DB.
-    //     }
-
-    //      DB::table('features')
-    //         ->where('id', $id)
-    //         ->update($data); // if a user uploaded an image will add. if not, a previous image will not change
-    //      \Session::flash('flash_message', __('Why us data updated'));
-    //      \Session::flash('flash_type', 'success');
-
-    //          return redirect()->back();
-    // }
-
     public function update($request, $id){
 
         $post = $this->model->find($id);
@@ -99,17 +81,43 @@ class PostRepository extends BaseRepository
     public function getPostById($postId){
         $post = $this->model->find($postId);
 
-
         if(!$post){
             return [
                 "status" => self::FALSE,
-                "message" => "Post update Failed"
+                "message" => "Post ID is Invalid"
             ];
         }
 
         return [
             "status" => self::TRUE,
-            "data" => $post,
+            "post" => $post,
+        ];
+    }
+
+    public function delete($postId){
+
+        if(!$post = $this->model->find($postId)){
+            return [
+                "status" => self::FALSE,
+                "message" => "Post ID is Invalid"
+            ];
+        }
+
+        $post->delete();
+
+        return [
+            "status" => self::TRUE,
+        ];
+    }
+
+    public function deleteAll(){
+
+        $posts = $this->model->getQuery()->delete();
+
+        return [
+            "status" => self::TRUE,
+            "message" => "No Post Avaialbale Yet",
+            "posts" => $posts
         ];
     }
 }

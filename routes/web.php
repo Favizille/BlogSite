@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'home'])->name("home");
     Route::get('/about', [HomeController::class, 'about'])->name("about");
     // Route::get('/blog', [HomeController::class, 'blog'])->name("blog");
-    Route::get('/blogPost', [HomeController::class, 'blogPost'])->name("blogPost");
+    // Route::get('/blogPost', [HomeController::class, 'blogPost'])->name("blogPost");
     Route::get('/team', [HomeController::class, 'team'])->name("team");
     Route::get('/contact', [HomeController::class, 'contact'])->name("contact");
 
@@ -39,13 +39,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/posting', [PostController::class, "create"])->name("create_post");
     Route::get('/updatepost/{postId}', [PostController::class, "updatePost"])->name("update_post");
     Route::post('/update/{postId}', [PostController::class, "update"])->name("update");
-
     Route::get('/blog', [PostController::class, "getAllPost"])->name("blog");
+    Route::get("/blog/post/{postId}", [PostController::class, "getPostById"])->name("blog_post");
+    Route::delete('/delete/post/{postId}', [PostController::class, "deletePost"])->name("delete_post");
+    Route::delete('/delete/all', [PostController::class, "deleteAllPost"])->name("delete_all");
 });
 
 
 //TO DO
-// 1. Error messages on register and login pages
+// 1. Error messages on register and login pages and every other page
 // 2. display images on blog post done
+// 3. update post done
+// 4. return views maintaining their styles
 // 5. DELETE BLOG Post / Posts
-// 6. review rework

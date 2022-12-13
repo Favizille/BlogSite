@@ -29,6 +29,13 @@
                                         <span class="fa fa-pencil"> Write</span>
                                     </a>
                                 </div>
+                                <div class="col-3">
+                                    <form action="{{route("delete_all")}}" method="POST">
+                                        {{method_field('delete')}}
+                                        @csrf
+                                        <button type="submit">Delete All</button>
+                                    </form>
+                                </div>
                             </div>
 
 							<div class="image main">
@@ -48,7 +55,7 @@
 
                                                         <img src="{{asset($post->file_path_formatted)}}" class="img-fluid" alt="">
 
-                                                        <h2 class="m-n"><a href="{{route('blogPost', $post->id)}}">{{$post->title}}</a></h2>
+                                                        <h2 class="m-n"><a href="{{route('blog_post', $post->id)}}">{{$post->title}}</a></h2>
 
                                                         <p> {{$post->user->first_name." ".$post->user->last_name}} &nbsp;|&nbsp; {{$post->updated_at}}</p>
                                                     </div>
