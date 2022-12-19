@@ -40,7 +40,7 @@ class AuthController extends Controller
             return view('register', ["message" => $registrationResponse['message']]);
         }
 
-        return redirect("blog");
+        return redirect("/");
     }
 
     public function loginUser(LoginRequest $request){

@@ -51,9 +51,9 @@
 
                                                 @foreach ($posts as $post)
 
-                                                    <div class="col-sm-6 text-center" style="height:15%; width:25%">
+                                                    <div class="col-sm-6 text-center" style="width: 30%; height:25%;">
 
-                                                        <img src="{{asset($post->file_path_formatted)}}" class="img-fluid" alt="">
+                                                        <img src="{{asset($post->file_path_formatted)}}" class="img-fluid" alt="" style="width:250px; height: 250px;">
 
                                                         <h2 class="m-n"><a href="{{route('blog_post', $post->id)}}">{{$post->title}}</a></h2>
 

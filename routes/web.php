@@ -16,11 +16,8 @@ use App\Http\Controllers\PostController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/', [AuthController::class, 'login'])->name("login_view");
+Route::get('/', [PostController::class, 'home'])->name("home");
+Route::get('/login/form', [AuthController::class, 'login'])->name("login_view");
 Route::post('/login', [AuthController::class, 'loginUser'])->name("login");
 Route::get('/register', [AuthController::class, 'register'])->name("register_view");
 Route::post('/registration', [AuthController::class, 'registration'])->name("registration");
@@ -28,7 +25,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name("logout");
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/home', [HomeController::class, 'home'])->name("home");
     Route::get('/about', [HomeController::class, 'about'])->name("about");
     // Route::get('/blog', [HomeController::class, 'blog'])->name("blog");
     // Route::get('/blogPost', [HomeController::class, 'blogPost'])->name("blogPost");
@@ -45,10 +41,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/delete/all', [PostController::class, "deleteAllPost"])->name("delete_all");
 });
 
-
-//TO DO
-// 1. Error messages on register and login pages and every other page
-// 2. display images on blog post done
-// 3. update post done
-// 4. return views maintaining their styles
-// 5. DELETE BLOG Post / Posts

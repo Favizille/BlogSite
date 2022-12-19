@@ -73,6 +73,11 @@ class PostRepository extends BaseRepository
         ];
     }
 
+    public function getPaginatedPost(){
+        // dd($this->model->paginate(6));
+        return $this->model->paginate(6);
+    }
+
     public function getAllPost(){
 
         return $this->model->all();

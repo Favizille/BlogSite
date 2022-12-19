@@ -17,7 +17,6 @@
             </nav>
 
 
-        <!-- Main -->
             <div id="main">
                 @if ($post->user->id === auth()->user()->id)
 

@@ -1,31 +1,58 @@
-@extends('Master.header')
-    @section('content')
-				<!-- Menu -->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Blog Website</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+			<div id="wrapper">
+
+					<header id="header">
+						<div class="inner">
+
+                            <a href="" class="logo">
+                                <span class="fa fa-pencil"></span> <span class="title">Blog Website</span>
+                            </a>
+
+                            <nav>
+                                <ul>
+                                    <li><a href="#menu">Menu</a></li>
+                                </ul>
+                            </nav>
+
+						</div>
+					</header>
+
 					<nav id="menu">
                         @isset($userId)
+                            @if (auth()->user())
 
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="{{route("home")}}" class="active">Home</a></li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="{{route("home")}}" class="active"  style="color: whitesmoke">Home</a></li>
 
-							<li><a href="{{route("blog")}}">Blog</a></li>
+                                    <li><a href="{{route("blog")}}"  style="color: whitesmoke">Blog</a></li>
 
-							<li><a href="{{route("about")}}">About</a></li>
+                                    <li><a href="{{route("about")}}">About</a></li>
 
-							<li><a href="{{route("team")}}">Authors</a></li>
+                                    <li><a href="{{route("team")}}">Authors</a></li>
 
-							<li><a href="{{route("contact")}}">Contact Us</a></li>
-						</ul>
+                                    <li><a href="{{route("contact")}}">Contact Us</a></li>
+                                </ul>
+                            @else
+
+                                <li> <a href="{{route("login_view")}}" style="color: whitesmoke">Login</a></li>
+
+                                <li><a href="{{route("register_view")}}" style="color: whitesmoke">Register</a></li>
+                            @endif
                         @endisset
-
-                        <li> <a href="{{route("login_view")}}" style="color: whitesmoke">Login</a></li>
-
-                        <li><a href="{{route("register_view")}}" style="color: whitesmoke">Register</a></li>
-
 
 					</nav>
 
-				<!-- Main -->
 					<div id="main">
 						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 						  <ol class="carousel-indicators">
@@ -58,103 +85,44 @@
 						<br>
 
 						<div class="inner">
-							<!-- About Us -->
 							<header id="inner">
 								<h1>Write your first blog post now!</h1>
-								<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>
+								<p>Make your blog truly your own with advanced web features. Writing your first blog post is exciting, Start your blog today by clicking on the link <a href="{{route('login_view')}}">
+                                    <span> write</span>
+                                </a></p>
 							</header>
 
 							<br>
 
 							<h2 class="h2">Latest blog posts</h2>
+                            @isset($posts)
+                                <div class="row">
+                                    @foreach ($posts as $post)
+                                        <div class="col-sm-4 text-center">
+                                            <img src="{{asset($post->file_path_formatted)}}" class="img-fluid" alt=""  style="height:300px; width:400px;"/>
 
-							<div class="row">
-								<div class="col-sm-4 text-center">
-									<img src="images/blog-1-720x480.jpg" class="img-fluid" alt="" />
+                                            <h2 class="m-n"><a href="{{route('blog_post', $post->id)}}">{{$post->title}}</a></h2>
 
-									<h2 class="m-n"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
+                                            <p>  {{$post->user->first_name." ".$post->user->last_name}} &nbsp;|&nbsp; {{$post->updated_at}}</p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endisset
 
-									<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-								</div>
+							<p class="text-center">
+                                @if(auth()->user())
+                                    <a href="{{route("blog")}}">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a>
+                                @else
+                                    <a href="{{route("login_view")}}">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a>
+                                @endif
 
-								<div class="col-sm-4 text-center">
-									<img src="images/blog-2-720x480.jpg" class="img-fluid" alt="" />
-
-									<h2 class="m-n"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-
-									<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-								</div>
-
-								<div class="col-sm-4 text-center">
-									<img src="images/blog-3-720x480.jpg" class="img-fluid" alt="" />
-
-									<h2 class="m-n"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-
-									<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-								</div>
-
-								<div class="col-sm-4 text-center">
-									<img src="images/blog-4-720x480.jpg" class="img-fluid" alt="" />
-
-									<h2 class="m-n"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-
-									<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-								</div>
-
-								<div class="col-sm-4 text-center">
-									<img src="images/blog-5-720x480.jpg" class="img-fluid" alt="" />
-
-									<h2 class="m-n"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-
-									<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-								</div>
-
-								<div class="col-sm-4 text-center">
-									<img src="images/blog-6-720x480.jpg" class="img-fluid" alt="" />
-
-									<h2 class="m-n"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-
-									<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-								</div>
-							</div>
-
-							<p class="text-center"><a href="blog.html">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a></p>
+                            </p>
 						</div>
 					</div>
 
-				<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
-							{{-- <section>
-								<h2>Contact Us</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
 
-										<div class="field half">
-											<input type="text" name="email" id="email" placeholder="Email" />
-										</div>
-
-										<div class="field">
-											<input type="text" name="subject" id="subject" placeholder="Subject" />
-										</div>
-
-										<div class="field">
-											<textarea name="message" id="message" rows="3" placeholder="Notes"></textarea>
-										</div>
-
-										<div class="field text-right">
-											<label>&nbsp;</label>
-
-											<ul class="actions">
-												<li><input type="submit" value="Send Message" class="primary" /></li>
-											</ul>
-										</div>
-									</div>
-								</form>
-							</section> --}}
 							<section>
 								<h2>Contact Info</h2>
 
@@ -174,13 +142,16 @@
 								</ul>
 							</section>
 
-							<ul class="copyright">
-								<li>Copyright © 2020 Company Name </li>
-								<li>Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a></li>
-							</ul>
 						</div>
 					</footer>
 
 			</div>
 
-	@endsection
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

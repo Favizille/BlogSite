@@ -16,6 +16,11 @@ class PostController extends Controller
         $this->postRepository = $postRepository;
     }
 
+    public function home(){
+        $paginatedPost = $this->postRepository->getPaginatedPost();
+        return view("home", ["posts" => $paginatedPost]);
+    }
+
     public function post(){
         return view('write');
     }
@@ -58,17 +63,14 @@ class PostController extends Controller
         return view("blogpost", ["post" => $postResponse["data"]]);
     }
 
-    public function updatePost( $request, $postId){
-        // $postResponse = $this->postRepository->getPostById($postId);
-        // $this->getPostById($postId);
-
-        $postResponse = $this->postRepository->update( $request, $postId);
+    public function updatePost($postId){
+        $postResponse = $this->postRepository->getPostById($postId);
 
         if($this->responseIsFalse($postResponse)){
             return view('blogpost', ["message" => $postResponse['message']]);
         }
 
-        return view("editBlogPost", ["post" => $postResponse["data"]]);
+        return view("editBlogPost", ["post" => $postResponse["post"]]);
     }
 
     public function update(Request $request, $id){
@@ -78,7 +80,6 @@ class PostController extends Controller
             return view('home', ["message" => $postResponse['message']]);
         }
 
-        // dd($postResponse);
         return view("blogpost", ["post" => $postResponse["post"]]);
     }
 
@@ -91,7 +92,6 @@ class PostController extends Controller
             return redirect()->back()->with(["message" => $deleteResponse['message']]);
         }
 
-        // session()->flash('alert-success', 'User was successful added!');
         return redirect("blog");
 
     }
@@ -107,8 +107,6 @@ class PostController extends Controller
         }
 
         return redirect("blog");
-
-
     }
 
 }
