@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Auth\AuthInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Repository\Eloquent\AuthRepository;
 
 class AuthController extends Controller
 {
     protected $authRepository;
 
-    public function __construct(AuthRepository $authRepository)
+    public function __construct(AuthInterface $authRepository)
     {
         $this->authRepository = $authRepository;
     }
@@ -44,7 +44,6 @@ class AuthController extends Controller
     }
 
     public function loginUser(LoginRequest $request){
-        // dd($request);
         $loginResponse = $this->authRepository->login($request);
 
         if($this->responseIsFalse($loginResponse)) {

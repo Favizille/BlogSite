@@ -74,7 +74,7 @@ class PostRepository extends BaseRepository
     }
 
     public function getPaginatedPost(){
-        // dd($this->model->paginate(6));
+
         return $this->model->paginate(6);
     }
 
@@ -92,6 +92,8 @@ class PostRepository extends BaseRepository
                 "message" => "Post ID is Invalid"
             ];
         }
+
+        dd($post);
 
         return [
             "status" => self::TRUE,

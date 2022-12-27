@@ -17,8 +17,7 @@ class PostController extends Controller
     }
 
     public function home(){
-        $paginatedPost = $this->postRepository->getPaginatedPost();
-        return view("home", ["posts" => $paginatedPost]);
+        return view("home", ["posts" => $this->postRepository->getPaginatedPost()]);
     }
 
     public function post(){

@@ -7,16 +7,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    protected $postRepository;
-
-    public function __contructor(PostRepository $postRepository){
-        $this->postRepository = $postRepository;
-    }
-
     public function home(){
-        // ["posts" => $this->postRepository->getAllPost()]
-        $posts = $this->postRepository->getAllPost();
-        dd($posts);
         return view('home' );
     }
 

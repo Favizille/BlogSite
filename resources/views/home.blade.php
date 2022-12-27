@@ -94,8 +94,8 @@
 
 							<br>
 
-							<h2 class="h2">Latest blog posts</h2>
                             @isset($posts)
+							    <h2 class="h2">Latest blog posts</h2>
                                 <div class="row">
                                     @foreach ($posts as $post)
                                         <div class="col-sm-4 text-center">

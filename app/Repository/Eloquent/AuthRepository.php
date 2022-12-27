@@ -2,10 +2,11 @@
 
 namespace App\Repository\Eloquent;
 
+use App\Auth\AuthInterface;
 use App\Models\User;
 use App\Repository\BaseRepository;
 
-class AuthRepository extends BaseRepository
+class AuthRepository extends BaseRepository implements AuthInterface
 {
     protected $model;
     protected $user;
@@ -19,14 +20,14 @@ class AuthRepository extends BaseRepository
 
     public function registration($data){
 
-            $data['password'] = bcrypt($data['password']);
+        $data['password'] = bcrypt($data['password']);
 
-            if(!$user = $this->user->create($data)){
-                return [
-                    "status" => self::FALSE,
-                    "message" => "Registration Failed"
-                ];
-            }
+        if(!$user = $this->user->create($data)){
+            return [
+                "status" => self::FALSE,
+                "message" => "Registration Failed"
+            ];
+        }
 
         return [
             "status" => self::TRUE,
