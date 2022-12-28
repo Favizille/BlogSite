@@ -17,7 +17,7 @@ class PostController extends Controller
     }
 
     public function home(){
-        return view("home", ["posts" => $this->postRepository->getPaginatedPost()]);
+        return view("home", ["posts" => $this->postRepository-> getAllPost()]);
     }
 
     public function post(){
@@ -49,6 +49,12 @@ class PostController extends Controller
     public function getAllPost(){
 
        return view ("blog", ["posts" => $this->postRepository->getAllPost()]);
+    }
+
+    public function getAllPostByUser(){
+
+        return  view ("blog", ["posts" => $this->postRepository->getAllPostByUser(auth()->user())]);
+
     }
 
     public function create(PostRequest $request){

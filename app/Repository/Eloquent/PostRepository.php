@@ -83,6 +83,11 @@ class PostRepository extends BaseRepository
         return $this->model->all();
     }
 
+    public function getAllPostByUser(object $user){
+
+        return $this->model->where('user_id', $user->id)->get();
+    }
+
     public function getPostById($postId){
         $post = $this->model->find($postId);
 
@@ -92,8 +97,6 @@ class PostRepository extends BaseRepository
                 "message" => "Post ID is Invalid"
             ];
         }
-
-        dd($post);
 
         return [
             "status" => self::TRUE,

@@ -2,11 +2,10 @@
 
 namespace App\Repository\Eloquent;
 
-use App\Auth\AuthInterface;
 use App\Models\User;
 use App\Repository\BaseRepository;
 
-class AuthRepository extends BaseRepository implements AuthInterface
+class AuthRepository extends BaseRepository
 {
     protected $model;
     protected $user;

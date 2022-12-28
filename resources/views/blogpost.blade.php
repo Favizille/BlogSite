@@ -1,6 +1,6 @@
 @extends('Master.header')
     @section('content')
-        <!-- Menu -->
+
             <nav id="menu">
                 <h2>Menu</h2>
                 <ul>
@@ -10,9 +10,7 @@
 
                     <li><a href="{{route("about")}}">About</a></li>
 
-                    <li><a href="{{route("team")}}">Authors</a></li>
-
-                    <li><a href="{{route("contact")}}">Contact Us</a></li>
+                    <li><a href="{{route("logout")}}">logout</a></li>
                 </ul>
             </nav>
 

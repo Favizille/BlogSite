@@ -10,9 +10,7 @@
 
 							<li><a href="{{route("about")}}">About</a></li>
 
-							<li><a href="{{route("team")}}">Authors</a></li>
-
-							<li><a href="{{route("contact")}}">Contact Us</a></li>
+                            <li><a href="{{route("logout")}}">logout</a></li>
 						</ul>
 					</nav>
 
@@ -79,13 +77,17 @@
 
                                             <br>
 
-                                            <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></p>
+                                            <div class="form-group">
+                                                <h4>Search History</h4>
+                                            </div>
 
-                                            <p><a href="#">Non, magni, sequi. Explicabo illum quas debitis ut.</a></p>
+                                            @isset($searchHistory)
 
-                                            <p><a href="#">Vatae expedita deleniti optio ex adipisci . </a></p>
+                                                <p>Search History Available </p>
+                                            @endisset
 
-                                            <p><a href="#">Soluta non modi dolorem voluptates dolor laborum.</a></p>
+                                            <p>Search History Not Available</p>
+
                                         </div>
                                     </div>
                                 </div>

@@ -10,9 +10,7 @@
 
                         <li><a href="{{route("about")}}"  class="active">About</a></li>
 
-                        <li><a href="{{route("team")}}">Authors</a></li>
-
-                        <li><a href="{{route("contact")}}">Contact Us</a></li>
+                        <li><a href="{{route("logout")}}">logout</a></li>
                     </ul>
 				</nav>
 
@@ -25,9 +23,11 @@
 								<img src="images/banner-image-1-1920x500.jpg" class="img-fluid" alt="" />
 							</div>
 
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
-							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+							<p>Hi and welcome the blog site. This blog site is a type of website where the content is presented in reverse chronological order (newer content appear first). We refer blog contents often as entries or “blog posts”. Blogs are typically run by an individual or a small group of people to present information in a conversational style.</p>
+							<p>I created thi site to help pass information faster and easir with some functionalities to help the writer / author interact with the readers on the site. his will help the writer to get responsive feedbacks and the readers better saifaction from the stories or posts read.</p>
+                            <p>The inspiration behind this site was to make people or individuals access, express and share stories among eacher with little or no fee. Another reason was to enhance businesses. On the other hand, more and more businesses are realizing the potential of a blog in their overall marketing strategy. Business owners are adding a separate blog section to their traditional websites and using it to get more traffic from search engines.
+                                That’s because blogs are proven to improve search engine optimization (SEO).
+                                Blogs also come with a RSS feed feature which allows users to stay updated with your latest posts. When a new post is published, the RSS feed is updated automatically. </p>
 						</div>
 					</div>
 

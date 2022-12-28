@@ -26,8 +26,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name("logout");
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/about', [HomeController::class, 'about'])->name("about");
-    // Route::get('/blog', [HomeController::class, 'blog'])->name("blog");
-    // Route::get('/blogPost', [HomeController::class, 'blogPost'])->name("blogPost");
     Route::get('/team', [HomeController::class, 'team'])->name("team");
     Route::get('/contact', [HomeController::class, 'contact'])->name("contact");
 
@@ -35,7 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/posting', [PostController::class, "create"])->name("create_post");
     Route::get('/updatepost/{postId}', [PostController::class, "updatePost"])->name("update_post");
     Route::post('/update/{postId}', [PostController::class, "update"])->name("update");
-    Route::get('/blog', [PostController::class, "getAllPost"])->name("blog");
+    // Route::get('/blog', [PostController::class, "getAllPost"])->name("blog");
+    Route::get('/blog', [PostController::class, "getAllPostByUser"])->name("blog");
     Route::get("/blog/post/{postId}", [PostController::class, "getPostById"])->name("blog_post");
     Route::delete('/delete/post/{postId}', [PostController::class, "deletePost"])->name("delete_post");
     Route::delete('/delete/all', [PostController::class, "deleteAllPost"])->name("delete_all");

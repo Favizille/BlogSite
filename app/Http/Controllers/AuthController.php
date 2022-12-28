@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Auth\AuthInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Repository\Eloquent\AuthRepository;
 
 class AuthController extends Controller
 {
     protected $authRepository;
 
-    public function __construct(AuthInterface $authRepository)
+    public function __construct(AuthRepository $authRepository)
     {
         $this->authRepository = $authRepository;
     }
@@ -28,6 +28,7 @@ class AuthController extends Controller
         if($response['status'] == false){
             return true;
         }
+
         return false;
 
     }
@@ -50,7 +51,7 @@ class AuthController extends Controller
             return view('login', ["message" => $loginResponse['message']]);
         }
 
-        return redirect("blog");
+        return redirect("/");
     }
 
     public function logout(Request $request){
